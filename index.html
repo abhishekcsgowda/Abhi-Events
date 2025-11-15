@@ -7,18 +7,18 @@
   <title>Abhi Events</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Firebase SDKs -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
 
-  <!-- Structured data for SEO -->
+  <!-- Structured data for Google -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Abhi Events",
-    "image": "https://your-default-image-link.com/image.jpg",
+    "image": "https://abhishekcsgowda.github.io/Abhi-Events/images/logo.jpg",
     "address": "Your City, Your State",
     "telephone": "+91 91XXXXXXXXXX",
     "priceRange": "$$",
@@ -28,46 +28,82 @@
 </head>
 <body>
 
-<header>
-  <h1>Abhi Events</h1>
-  <p>Professional Event Management & Flower Decoration</p>
-</header>
+  <header>
+    <h1>Abhi Events</h1>
+    <p>Event Management & Flower Decoration</p>
+  </header>
 
-<section id="services">
-  <h2>Our Services</h2>
-  <div class="service-card">Wedding Planning</div>
-  <div class="service-card">Corporate Events</div>
-  <div class="service-card">Birthday Parties</div>
-  <div class="service-card">Flower Decoration</div>
-</section>
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Event Management</li>
+      <li>Flower Decoration</li>
+      <li>Party Planning</li>
+      <li>Wedding Arrangements</li>
+      <li>Corporate Events</li>
+      <li>Birthday Parties</li>
+      <li>Stage Decoration</li>
+      <li>Catering Services</li>
+      <li>Photography</li>
+      <li>Music & DJ</li>
+    </ul>
+  </section>
 
-<section id="reviews">
-  <h2>Customer Reviews</h2>
-  <form id="review-form">
-    <input type="text" id="name" placeholder="Your Name" required /><br>
-    <textarea id="reviewText" placeholder="Write your review..." required></textarea><br>
-    <label for="rating">Rating:</label>
-    <select id="rating" required>
-      <option value="5">5 ★</option>
-      <option value="4">4 ★</option>
-      <option value="3">3 ★</option>
-      <option value="2">2 ★</option>
-      <option value="1">1 ★</option>
-    </select><br>
-    <label for="photo">Upload Photo (optional):</label>
-    <input type="file" id="photo" accept="image/*" /><br>
-    <button type="submit">Submit Review</button>
-  </form>
-  <div id="reviews-list"></div>
-</section>
+  <!-- Reviews Section -->
+  <section id="reviews">
+    <h2>Customer Reviews</h2>
+    <form id="review-form">
+      <input type="text" id="name" placeholder="Your Name" required /><br>
+      <textarea id="reviewText" placeholder="Write your review..." required></textarea><br>
+      <label for="rating">Rating:</label>
+      <select id="rating" required>
+        <option value="5">5 ★</option>
+        <option value="4">4 ★</option>
+        <option value="3">3 ★</option>
+        <option value="2">2 ★</option>
+        <option value="1">1 ★</option>
+      </select><br>
+      <label for="photo">Upload Photo (optional):</label>
+      <input type="file" id="photo" accept="image/*" /><br>
+      <button type="submit">Submit Review</button>
+    </form>
+    <div id="reviews-list"></div>
+  </section>
 
-<section id="contact">
-  <h2>Contact Us</h2>
-  <p>Location: Your City, Your State</p>
-  <p>Email: abhi.events@example.com</p>
-  <p>Phone: +91 91XXXXXXXXXX</p>
-</section>
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Location: channamaregowdanadoddi, sugganahalli post, kasaba-1 hoballi, Ramanagaram, karnataka - 562128</p>
+    <p>Email: abhi.events@example.com</p>
+    <p>Phone: +91 918548945231</p>
+  </section>
 
-<script src="script.js"></script>
+  <!-- WhatsApp Chat Button -->
+  <a href="https://wa.me/918548945231?text=Hello%2C%20I%20want%20to%20book%20Abhi%20Events%20services." 
+     target="_blank" 
+     style="
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25D366;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        z-index: 1000;
+     ">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+          alt="WhatsApp" 
+          style="width:30px; height:30px;">
+  </a>
+
+  <!-- Firebase Script -->
+  <script src="script.js"></script>
 </body>
 </html>
