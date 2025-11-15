@@ -19,64 +19,100 @@
     "@type": "LocalBusiness",
     "name": "Abhi Events",
     "image": "https://abhishekcsgowda.github.io/Abhi-Events/images/logo.jpg",
-    "address": "Your City, Your State",
-    "telephone": "+91 91XXXXXXXXXX",
-    "priceRange": "$$",
+    "address": "Rayardoddi, Ramanagaram - 562159",
+    "telephone": "+91 8548945231",
     "description": "Professional event management and flower decoration services."
   }
   </script>
 </head>
 <body>
 
+  <!-- Header Section -->
   <header>
     <h1>Abhi Events</h1>
     <p>Event Management & Flower Decoration</p>
   </header>
 
-  <!-- Services Section -->
+  <!-- Services Section with Dropdown -->
   <section id="services">
     <h2>Our Services</h2>
-    <ul>
-      <li>Event Management</li>
-      <li>Flower Decoration</li>
-      <li>Party Planning</li>
-      <li>Wedding Arrangements</li>
-      <li>Corporate Events</li>
-      <li>Birthday Parties</li>
-      <li>Stage Decoration</li>
-      <li>Catering Services</li>
-      <li>Photography</li>
-      <li>Music & DJ</li>
-    </ul>
+    <button class="dropdown-btn">Wedding Planning</button>
+    <div class="dropdown-content">
+      <p>Full wedding planning with beautiful themes and decorations.</p>
+    </div>
+    <button class="dropdown-btn">Flower Decoration</button>
+    <div class="dropdown-content">
+      <p>Custom flower arrangements for your special day.</p>
+    </div>
+    <button class="dropdown-btn">Party Planning</button>
+    <div class="dropdown-content">
+      <p>Perfect planning for birthdays, anniversaries, and more.</p>
+    </div>
   </section>
 
-  <!-- Reviews Section -->
+  <!-- Reviews Section with Preview and "See More" -->
   <section id="reviews">
     <h2>Customer Reviews</h2>
-    <form id="review-form">
-      <input type="text" id="name" placeholder="Your Name" required /><br>
-      <textarea id="reviewText" placeholder="Write your review..." required></textarea><br>
-      <label for="rating">Rating:</label>
-      <select id="rating" required>
-        <option value="5">5 ★</option>
-        <option value="4">4 ★</option>
-        <option value="3">3 ★</option>
-        <option value="2">2 ★</option>
-        <option value="1">1 ★</option>
-      </select><br>
-      <label for="photo">Upload Photo (optional):</label>
-      <input type="file" id="photo" accept="image/*" /><br>
-      <button type="submit">Submit Review</button>
-    </form>
+    
+    <!-- Review Submission Form -->
+    <div id="review-form-container">
+      <h3>Add Your Review</h3>
+      <form id="review-form">
+        <input type="text" id="name" placeholder="Your Name" required /><br>
+        <textarea id="reviewText" placeholder="Write your review..." required></textarea><br>
+        <label for="rating">Rating:</label>
+        <select id="rating" required>
+          <option value="5">5 ★</option>
+          <option value="4">4 ★</option>
+          <option value="3">3 ★</option>
+          <option value="2">2 ★</option>
+          <option value="1">1 ★</option>
+        </select><br>
+        <label for="photo">Upload Photo (optional):</label>
+        <input type="file" id="photo" accept="image/*" /><br>
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+
+    <!-- Display Reviews Section -->
     <div id="reviews-list"></div>
+    <button id="see-more-reviews">See More Reviews</button>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact Section with Toggle -->
   <section id="contact">
     <h2>Contact Us</h2>
-    <p>Location: channamaregowdanadoddi, sugganahalli post, kasaba-1 hoballi, Ramanagaram, karnataka - 562128</p>
-    <p>Email: abhi.events@example.com</p>
-    <p>Phone: +91 918548945231</p>
+    <button id="toggle-contact">Show Contact Info</button>
+    <div id="contact-info" style="display:none;">
+      <p>Location: Rayardoddi, Ramanagaram - 562159</p>
+      <p>Email: abhishekcsgowda736@gmail.com</p>
+      <p>Phone: +91 8548945231</p>
+    </div>
+  </section>
+
+  <!-- Gallery Section with Work Photos -->
+  <section id="gallery">
+    <h2>Our Work</h2>
+    <div class="gallery-grid">
+      <img src="images/work1.jpg" alt="Work 1">
+      <img src="images/work2.jpg" alt="Work 2">
+      <img src="images/work3.jpg" alt="Work 3">
+    </div>
+  </section>
+
+  <!-- Booking Form Section -->
+  <section id="booking">
+    <h2>Book Your Event</h2>
+    <form id="booking-form">
+      <input type="text" id="customer-name" placeholder="Your Name" required /><br>
+      <input type="email" id="customer-email" placeholder="Your Email" required /><br>
+      <input type="text" id="event-type" placeholder="Event Type (e.g., Wedding)" required /><br>
+      <input type="date" id="event-date" required /><br>
+      <button type="submit">Book Now</button>
+    </form>
+    <div id="booking-confirmation" style="display:none;">
+      <p>Thank you for booking with Abhi Events! We will contact you soon.</p>
+    </div>
   </section>
 
   <!-- WhatsApp Chat Button -->
