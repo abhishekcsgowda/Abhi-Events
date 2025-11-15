@@ -115,7 +115,7 @@ bookingForm.addEventListener('submit', (e) => {
   `;
 
   // Encode the message to pass in the WhatsApp URL
-  const whatsappLink = `https://wa.me/918548945231?text=${encodeURIComponent(message)}`;
+  const whatsappLink = `https://wa.me/8548945231?text=${encodeURIComponent(message)}`;
 
   // Redirect the user to WhatsApp with pre-filled booking details
   window.open(whatsappLink, '_blank');
