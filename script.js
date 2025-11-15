@@ -1,21 +1,19 @@
-// ===== NAVBAR MOBILE =====
+// MOBILE MENU
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
-
 hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// ===== ACCORDION =====
-const accordionHeaders = document.querySelectorAll('.accordion-header');
-accordionHeaders.forEach(header => {
+// ACCORDION
+document.querySelectorAll('.accordion-header').forEach(header => {
   header.addEventListener('click', () => {
     const content = header.nextElementSibling;
     content.style.display = content.style.display === 'block' ? 'none' : 'block';
   });
 });
 
-// ===== FIREBASE CONFIG =====
+// FIREBASE CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyB3mqBFNep6ZIHhNMrUKVV14L5j9oMgAfs",
   authDomain: "abhi-events-db7e8.firebaseapp.com",
@@ -29,11 +27,10 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// ===== REVIEWS =====
+// REVIEWS
 const reviewForm = document.getElementById('review-form');
 const reviewsDisplay = document.getElementById('reviews-display');
 
-// Load existing reviews
 db.collection("reviews").orderBy("timestamp","desc").onSnapshot(snapshot=>{
   reviewsDisplay.innerHTML="";
   snapshot.forEach(doc=>{
@@ -50,7 +47,6 @@ db.collection("reviews").orderBy("timestamp","desc").onSnapshot(snapshot=>{
   });
 });
 
-// Submit new review
 reviewForm.addEventListener('submit', async (e)=>{
   e.preventDefault();
   const name = document.getElementById('review-name').value;
@@ -78,7 +74,7 @@ reviewForm.addEventListener('submit', async (e)=>{
   alert("Thank you for your review!");
 });
 
-// ===== BOOKING =====
+// BOOKING
 const bookingForm = document.getElementById('booking-form');
 const bookingConfirmation = document.getElementById('booking-confirmation');
 
@@ -90,7 +86,6 @@ bookingForm.addEventListener('submit', async (e)=>{
   const eventDate = document.getElementById('event-date').value;
   const message = document.getElementById('event-message').value;
 
-  // Save to Firestore
   await db.collection("bookings").add({
     customerName,
     customerEmail,
@@ -100,12 +95,10 @@ bookingForm.addEventListener('submit', async (e)=>{
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   });
 
-  // Show confirmation
   bookingForm.style.display="none";
   bookingConfirmation.style.display="block";
 
-  // WhatsApp notification
   const whatsappMsg = `New Booking:\nName: ${customerName}\nEmail: ${customerEmail}\nEvent: ${eventType}\nDate: ${eventDate}\nMessage: ${message}`;
-  const whatsappLink = `https://wa.me/+919353737776?text=${encodeURIComponent(whatsappMsg)}`;
+  const whatsappLink = `https://wa.me/+918548945231?text=${encodeURIComponent(whatsappMsg)}`;
   window.open(whatsappLink, '_blank');
 });
