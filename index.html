@@ -3,143 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Abhi Events - Professional event management and flower decoration services. Book your event today!">
+  <meta name="description" content="Abhi Events - Professional Event Management & Flower Decoration Services">
+  <meta name="keywords" content="Event Management, Flower Decoration, Wedding Planner, Birthday Planner, Corporate Events">
   <title>Abhi Events</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
-
-  <!-- Structured data for Google -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Abhi Events",
-    "image": "https://abhishekcsgowda.github.io/Abhi-Events/images/logo.jpg",
-    "address": "Rayardoddi, Ramanagaram - 562159",
-    "telephone": "+91 8548945231",
-    "description": "Professional event management and flower decoration services."
-  }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-  <!-- Header Section -->
+  <!-- ===== HEADER ===== -->
   <header>
-    <h1>Abhi Events</h1>
-    <p>Event Management & Flower Decoration</p>
+    <nav>
+      <div class="logo">Abhi Events</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
   </header>
 
-  <!-- Services Section with Dropdown -->
-  <section id="services">
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Making Your Events Magical</h1>
+      <p>Professional Event Management & Flower Decoration</p>
+      <div class="hero-buttons">
+        <a href="#booking" class="btn">Book Now</a>
+        <a href="#services" class="btn btn-outline">Our Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" class="section services">
     <h2>Our Services</h2>
-    <button class="dropdown-btn">Wedding Planning</button>
-    <div class="dropdown-content">
-      <p>Full wedding planning with beautiful themes and decorations.</p>
-    </div>
-    <button class="dropdown-btn">Flower Decoration</button>
-    <div class="dropdown-content">
-      <p>Custom flower arrangements for your special day.</p>
-    </div>
-    <button class="dropdown-btn">Party Planning</button>
-    <div class="dropdown-content">
-      <p>Perfect planning for birthdays, anniversaries, and more.</p>
-    </div>
-  </section>
-
-  <!-- Reviews Section with Preview and "See More" -->
-  <section id="reviews">
-    <h2>Customer Reviews</h2>
-    
-    <!-- Review Submission Form -->
-    <div id="review-form-container">
-      <h3>Add Your Review</h3>
-      <form id="review-form">
-        <input type="text" id="name" placeholder="Your Name" required /><br>
-        <textarea id="reviewText" placeholder="Write your review..." required></textarea><br>
-        <label for="rating">Rating:</label>
-        <select id="rating" required>
-          <option value="5">5 ★</option>
-          <option value="4">4 ★</option>
-          <option value="3">3 ★</option>
-          <option value="2">2 ★</option>
-          <option value="1">1 ★</option>
-        </select><br>
-        <label for="photo">Upload Photo (optional):</label>
-        <input type="file" id="photo" accept="image/*" /><br>
-        <button type="submit">Submit Review</button>
-      </form>
-    </div>
-
-    <!-- Display Reviews Section -->
-    <div id="reviews-list"></div>
-    <button id="see-more-reviews">See More Reviews</button>
-  </section>
-
-  <!-- Contact Section with Toggle -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <button id="toggle-contact">Show Contact Info</button>
-    <div id="contact-info" style="display:none;">
-      <p>Location: Rayardoddi, Ramanagaram - 562159</p>
-      <p>Email: abhishekcsgowda736@gmail.com</p>
-      <p>Phone: +91 8548945231</p>
+    <div class="service-accordion">
+      <div class="accordion-item">
+        <button class="accordion-header">Wedding Planner</button>
+        <div class="accordion-content">
+          <p>Full wedding planning, decoration, venue selection, and coordination.</p>
+          <p>Starting from ₹50,000</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">Birthday Parties</button>
+        <div class="accordion-content">
+          <p>Theme-based birthday parties with decorations, catering, and entertainment.</p>
+          <p>Starting from ₹20,000</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">Corporate Events</button>
+        <div class="accordion-content">
+          <p>Conference setups, workshops, product launches, and corporate parties.</p>
+          <p>Starting from ₹30,000</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">Flower Decoration</button>
+        <div class="accordion-content">
+          <p>Beautiful floral arrangements for all events, including weddings and parties.</p>
+          <p>Starting from ₹10,000</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Gallery Section with Work Photos -->
-  <section id="gallery">
+  <!-- ===== PRICING ===== -->
+  <section id="pricing" class="section pricing">
+    <h2>Pricing Packages</h2>
+    <div class="pricing-cards">
+      <div class="card">
+        <h3>Basic</h3>
+        <p>₹25,000</p>
+        <ul>
+          <li>Event coordination</li>
+          <li>Basic decoration</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Standard</h3>
+        <p>₹50,000</p>
+        <ul>
+          <li>Event coordination</li>
+          <li>Professional decoration</li>
+          <li>Flower arrangements</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Premium</h3>
+        <p>₹1,00,000+</p>
+        <ul>
+          <li>Full event planning</li>
+          <li>Luxury decoration</li>
+          <li>Photography & Flowers</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section id="gallery" class="section gallery">
     <h2>Our Work</h2>
     <div class="gallery-grid">
-      <img src="images/work1.jpg" alt="Work 1">
-      <img src="images/work2.jpg" alt="Work 2">
-      <img src="images/work3.jpg" alt="Work 3">
+      <img src="images/event1.jpg" alt="Event 1">
+      <img src="images/event2.jpg" alt="Event 2">
+      <img src="images/event3.jpg" alt="Event 3">
+      <img src="images/event4.jpg" alt="Event 4">
+      <img src="images/event5.jpg" alt="Event 5">
+      <img src="images/event6.jpg" alt="Event 6">
     </div>
   </section>
 
-  <!-- Booking Form Section -->
-  <section id="booking">
+  <!-- ===== REVIEWS ===== -->
+  <section id="reviews" class="section reviews">
+    <h2>Customer Reviews</h2>
+    <div class="reviews-display" id="reviews-display">
+      <!-- Previous reviews dynamically inserted here -->
+    </div>
+
+    <h3>Submit Your Review</h3>
+    <form id="review-form">
+      <input type="text" id="review-name" placeholder="Your Name" required>
+      <textarea id="review-text" placeholder="Your Review" required></textarea>
+      <input type="number" id="review-rating" min="1" max="5" placeholder="Rating (1-5)" required>
+      <input type="file" id="review-image" accept="image/*">
+      <button type="submit">Submit Review</button>
+    </form>
+  </section>
+
+  <!-- ===== BOOKING ===== -->
+  <section id="booking" class="section booking">
     <h2>Book Your Event</h2>
     <form id="booking-form">
-      <input type="text" id="customer-name" placeholder="Your Name" required /><br>
-      <input type="email" id="customer-email" placeholder="Your Email" required /><br>
-      <input type="text" id="event-type" placeholder="Event Type (e.g., Wedding)" required /><br>
-      <input type="date" id="event-date" required /><br>
+      <input type="text" id="customer-name" placeholder="Your Name" required>
+      <input type="email" id="customer-email" placeholder="Email" required>
+      <input type="text" id="event-type" placeholder="Event Type" required>
+      <input type="date" id="event-date" required>
+      <textarea id="event-message" placeholder="Additional Message"></textarea>
       <button type="submit">Book Now</button>
     </form>
     <div id="booking-confirmation" style="display:none;">
-      <p>Thank you for booking with Abhi Events! We will contact you soon.</p>
+      <h3>Thank you! Your booking has been submitted.</h3>
     </div>
   </section>
 
-  <!-- WhatsApp Chat Button -->
-  <a href="https://wa.me/918548945231?text=Hello%2C%20I%20want%20to%20book%20Abhi%20Events%20services." 
-     target="_blank" 
-     style="
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #25D366;
-        color: white;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        z-index: 1000;
-     ">
-     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-          alt="WhatsApp" 
-          style="width:30px; height:30px;">
-  </a>
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section contact">
+    <h2>Contact Us</h2>
+    <p>WhatsApp: <a href="https://wa.me/+918548945231" target="_blank">+91XXXXXXXXXX</a></p>
+    <p>Email: <a href="mailto: abhishekcsgowda736@gmail.com">youremail@example.com</a></p>
+    <p>Phone: <a href="tel:+918548945231"></a></p>
+    <div class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
 
-  <!-- Firebase Script -->
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 Abhi Events. All Rights Reserved.</p>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
