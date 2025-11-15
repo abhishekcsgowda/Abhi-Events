@@ -1,4 +1,21 @@
-// Firebase config (replace with your Firebase config)
+// ===== NAVBAR MOBILE =====
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+// ===== ACCORDION =====
+const accordionHeaders = document.querySelectorAll('.accordion-header');
+accordionHeaders.forEach(header => {
+  header.addEventListener('click', () => {
+    const content = header.nextElementSibling;
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+  });
+});
+
+// ===== FIREBASE CONFIG =====
 const firebaseConfig = {
   apiKey: "AIzaSyB3mqBFNep6ZIHhNMrUKVV14L5j9oMgAfs",
   authDomain: "abhi-events-db7e8.firebaseapp.com",
@@ -9,114 +26,86 @@ const firebaseConfig = {
   measurementId: "G-XX4H973WC8"
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-const storage = firebase.storage();
 
-// Handle Review Form Submission
+// ===== REVIEWS =====
 const reviewForm = document.getElementById('review-form');
-const reviewsList = document.getElementById('reviews-list');
+const reviewsDisplay = document.getElementById('reviews-display');
 
-reviewForm.addEventListener('submit', async (e) => {
+// Load existing reviews
+db.collection("reviews").orderBy("timestamp","desc").onSnapshot(snapshot=>{
+  reviewsDisplay.innerHTML="";
+  snapshot.forEach(doc=>{
+    const data = doc.data();
+    const div = document.createElement('div');
+    div.classList.add('review-item');
+    div.innerHTML = `
+      <h4>${data.name} - ⭐ ${data.rating}</h4>
+      <p>${data.text}</p>
+      ${data.image ? `<img src="${data.image}" alt="Review Image" style="max-width:150px;border-radius:10px;">` : ''}
+      <hr>
+    `;
+    reviewsDisplay.appendChild(div);
+  });
+});
+
+// Submit new review
+reviewForm.addEventListener('submit', async (e)=>{
   e.preventDefault();
+  const name = document.getElementById('review-name').value;
+  const text = document.getElementById('review-text').value;
+  const rating = document.getElementById('review-rating').value;
+  const imageFile = document.getElementById('review-image').files[0];
 
-  const name = document.getElementById('name').value;
-  const reviewText = document.getElementById('reviewText').value;
-  const rating = parseInt(document.getElementById('rating').value);
-  const photoFile = document.getElementById('photo').files[0];
-
-  let photoUrl = "";
-
-  if (photoFile) {
-    const storageRef = storage.ref('reviews/' + Date.now() + '_' + photoFile.name);
-    const snapshot = await storageRef.put(photoFile);
-    photoUrl = await snapshot.ref.getDownloadURL();
+  let imageUrl = "";
+  if(imageFile){
+    const storageRef = firebase.storage().ref();
+    const imageRef = storageRef.child('reviews/'+imageFile.name);
+    await imageRef.put(imageFile);
+    imageUrl = await imageRef.getDownloadURL();
   }
 
-  await db.collection("reviews").add({
+  db.collection("reviews").add({
     name,
-    reviewText,
+    text,
     rating,
-    photoUrl,
+    image: imageUrl,
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   });
 
-  reviewForm.reset();  // clear form
-  loadReviews();  // reload reviews
+  reviewForm.reset();
+  alert("Thank you for your review!");
 });
 
-// Load Reviews
-async function loadReviews() {
-  reviewsList.innerHTML = "";
-  const snapshot = await db.collection("reviews").orderBy("timestamp", "desc").limit(3).get();
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const div = document.createElement('div');
-    div.className = "review-card";
-    div.innerHTML = `
-      <h4>${data.name}</h4>
-      <p>${"★".repeat(data.rating)}${"☆".repeat(5 - data.rating)}</p>
-      <p>${data.reviewText}</p>
-      ${data.photoUrl ? `<img src="${data.photoUrl}" alt="Review photo" />` : ""}
-    `;
-    reviewsList.appendChild(div);
-  });
-}
-
-// Show more reviews
-document.getElementById('see-more-reviews').addEventListener('click', function() {
-  loadReviews();
-});
-
-// Toggle Contact and Pricing
-document.getElementById('toggle-contact').addEventListener('click', function() {
-  const contactInfo = document.getElementById('contact-info');
-  contactInfo.style.display = contactInfo.style.display === 'block' ? 'none' : 'block';
-});
-
-document.getElementById('toggle-pricing').addEventListener('click', function() {
-  const pricingInfo = document.getElementById('pricing-info');
-  pricingInfo.style.display = pricingInfo.style.display === 'block' ? 'none' : 'block';
-});
-
-// Handle Booking Form Submission
+// ===== BOOKING =====
 const bookingForm = document.getElementById('booking-form');
 const bookingConfirmation = document.getElementById('booking-confirmation');
 
-bookingForm.addEventListener('submit', (e) => {
+bookingForm.addEventListener('submit', async (e)=>{
   e.preventDefault();
-
   const customerName = document.getElementById('customer-name').value;
   const customerEmail = document.getElementById('customer-email').value;
   const eventType = document.getElementById('event-type').value;
   const eventDate = document.getElementById('event-date').value;
+  const message = document.getElementById('event-message').value;
 
-  // Save booking to Firestore (optional)
-  db.collection("bookings").add({
+  // Save to Firestore
+  await db.collection("bookings").add({
     customerName,
     customerEmail,
     eventType,
     eventDate,
+    message,
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   });
 
-  // Show booking confirmation
-  bookingForm.style.display = 'none';
-  bookingConfirmation.style.display = 'block';
+  // Show confirmation
+  bookingForm.style.display="none";
+  bookingConfirmation.style.display="block";
 
-  // Create WhatsApp message with booking details
-  const message = `
-    New Booking Request:
-    Name: ${customerName}
-    Email: ${customerEmail}
-    Event Type: ${eventType}
-    Event Date: ${eventDate}
-  `;
-
-  // Encode the message to pass in the WhatsApp URL
-  const whatsappLink = `https://wa.me/9353737776?text=${encodeURIComponent(message)}`;
-
-  // Redirect the user to WhatsApp with pre-filled booking details
+  // WhatsApp notification
+  const whatsappMsg = `New Booking:\nName: ${customerName}\nEmail: ${customerEmail}\nEvent: ${eventType}\nDate: ${eventDate}\nMessage: ${message}`;
+  const whatsappLink = `https://wa.me/+919353737776?text=${encodeURIComponent(whatsappMsg)}`;
   window.open(whatsappLink, '_blank');
 });
